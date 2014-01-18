@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  notice_shop_id: 1
+  receiver_user_id: 1
+  type: 
+
+two:
+  notice_shop_id: 1
+  receiver_user_id: 1
+  type: 

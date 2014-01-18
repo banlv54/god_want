@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @notice_shop.shop_id %>
+</p>
+
+<p>
+  <strong>Send user:</strong>
+  <%= @notice_shop.send_user_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @notice_shop.type %>
+</p>
+
+<%= link_to 'Edit', edit_notice_shop_path(@notice_shop) %> |
+<%= link_to 'Back', notice_shops_path %>

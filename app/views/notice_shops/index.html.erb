@@ -1,0 +1,31 @@
+<h1>Listing notice_shops</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shop</th>
+      <th>Send user</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notice_shops.each do |notice_shop| %>
+      <tr>
+        <td><%= notice_shop.shop_id %></td>
+        <td><%= notice_shop.send_user_id %></td>
+        <td><%= notice_shop.type %></td>
+        <td><%= link_to 'Show', notice_shop %></td>
+        <td><%= link_to 'Edit', edit_notice_shop_path(notice_shop) %></td>
+        <td><%= link_to 'Destroy', notice_shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Notice shop', new_notice_shop_path %>

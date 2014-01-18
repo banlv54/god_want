@@ -1,0 +1,2 @@
+module NoticeShopsHelper
+end

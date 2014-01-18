@@ -1,0 +1,39 @@
+<h1>Listing wants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tags</th>
+      <th>User</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Address</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wants.each do |want| %>
+      <tr>
+        <td><%= want.tags %></td>
+        <td><%= want.user_id %></td>
+        <td><%= want.description %></td>
+        <td><%= want.image %></td>
+        <td><%= want.address %></td>
+        <td><%= want.latitude %></td>
+        <td><%= want.longitude %></td>
+        <td><%= link_to 'Show', want %></td>
+        <td><%= link_to 'Edit', edit_want_path(want) %></td>
+        <td><%= link_to 'Destroy', want, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Want', new_want_path %>

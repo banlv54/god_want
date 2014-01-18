@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @want.tags %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @want.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @want.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @want.image %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @want.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @want.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @want.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_want_path(@want) %> |
+<%= link_to 'Back', wants_path %>

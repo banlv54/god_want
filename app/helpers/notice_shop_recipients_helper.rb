@@ -1,0 +1,2 @@
+module NoticeShopRecipientsHelper
+end

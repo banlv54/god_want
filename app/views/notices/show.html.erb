@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @notice.target_id %>
+</p>
+
+<p>
+  <strong>Send user:</strong>
+  <%= @notice.send_user_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @notice.type %>
+</p>
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Back', notices_path %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @shop.owner_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @shop.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @shop.address2 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @shop.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @shop.country %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @shop.zipcode %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @shop.tel %>
+</p>
+
+<p>
+  <strong>Banner:</strong>
+  <%= @shop.banner %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @shop.tags %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>

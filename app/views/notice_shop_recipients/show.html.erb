@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Notice shop:</strong>
+  <%= @notice_shop_recipient.notice_shop_id %>
+</p>
+
+<p>
+  <strong>Receiver user:</strong>
+  <%= @notice_shop_recipient.receiver_user_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @notice_shop_recipient.type %>
+</p>
+
+<%= link_to 'Edit', edit_notice_shop_recipient_path(@notice_shop_recipient) %> |
+<%= link_to 'Back', notice_shop_recipients_path %>

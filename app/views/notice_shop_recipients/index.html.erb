@@ -1,0 +1,31 @@
+<h1>Listing notice_shop_recipients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Notice shop</th>
+      <th>Receiver user</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notice_shop_recipients.each do |notice_shop_recipient| %>
+      <tr>
+        <td><%= notice_shop_recipient.notice_shop_id %></td>
+        <td><%= notice_shop_recipient.receiver_user_id %></td>
+        <td><%= notice_shop_recipient.type %></td>
+        <td><%= link_to 'Show', notice_shop_recipient %></td>
+        <td><%= link_to 'Edit', edit_notice_shop_recipient_path(notice_shop_recipient) %></td>
+        <td><%= link_to 'Destroy', notice_shop_recipient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Notice shop recipient', new_notice_shop_recipient_path %>
