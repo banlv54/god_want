@@ -29,9 +29,13 @@ GoldWant::Application.routes.draw do
 
   resources :shops
 
-  resources :users
+  resources :users do
+    resources :wants
+  end
 
   resources :tags
+  root to: "wants#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
