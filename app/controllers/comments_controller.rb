@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     current_user = User.first # replace this with current_user logged in
-    binding.pry
     respond_to do |format|
       if current_user.do_comment(comment_params[:advertise_id], comment_params[:comment])
         format.html { redirect_to advertises_path, notice: "Comment #{comment_params[:comment]} for advertise #{comment_params[:advertise_id]} has been created by #{current_user.name}"}

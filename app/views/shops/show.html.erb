@@ -1,54 +1,52 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Owner:</strong>
-  <%= @shop.owner_id %>
+  <%= @shop.try(:owner_id) %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @shop.name %>
+  <%= @shop.try(:name) %>
 </p>
 
 <p>
   <strong>Address1:</strong>
-  <%= @shop.address1 %>
+  <%= @shop.try(:address1) %>
 </p>
 
 <p>
   <strong>Address2:</strong>
-  <%= @shop.address2 %>
+  <%= @shop.try(:address2) %>
 </p>
 
 <p>
   <strong>City:</strong>
-  <%= @shop.city %>
+  <%= @shop.try(:city) %>
 </p>
 
 <p>
   <strong>Country:</strong>
-  <%= @shop.country %>
+  <%= @shop.try(:country) %>
 </p>
 
 <p>
   <strong>Zipcode:</strong>
-  <%= @shop.zipcode %>
+  <%= @shop.try(:zipcode) %>
 </p>
 
 <p>
   <strong>Tel:</strong>
-  <%= @shop.tel %>
+  <%= @shop.try(:tel) %>
 </p>
 
 <p>
   <strong>Banner:</strong>
-  <%= @shop.banner %>
+  <%= image_tag @shop.try(:banner).try(:large) %>
 </p>
 
 <p>
   <strong>Tags:</strong>
-  <%= @shop.tags %>
+  <%= @shop.try(:tags) %>
 </p>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+<%= link_to 'Edit', edit_shop_path %> |

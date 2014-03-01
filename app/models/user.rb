@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   def do_comment advertise_id, comment
     Comment::CommentAdvertise.create advertise_id: advertise_id, user_id: self.id, comment: comment
   end
+  has_many :user_shops
+  has_many :shops, through: :user_shops
+
+  has_one :shop, foreign_key: :owner_id
+  has_one :role
 end
