@@ -1,49 +1,68 @@
-<p id="notice"><%= notice %></p>
-<h1>Listing wants</h1>
+<%#= form_for Like::LikeWant.new, url: likes_path, method: :post do |f| %>
+  <%#= f.hidden_field :type, value: "Like::LikeWant" %>
+  <%#= f.hidden_field :target_id, value: want.id %>
+  <%#= f.submit "Like" %>
+<%# end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Tags</th>
-      <th>User</th>
-      <th>Description</th>
-      <th>Image</th>
-      <th>Address</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Like Count</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>Want honepage</h1>
+  </div>
 
-  <tbody>
+  <div data-role="main" class="ui-content">
     <% @wants.each do |want| %>
-      <tr>
-        <td><%= want.tags %></td>
-        <td><%= want.user_id %></td>
-        <td><%= want.description %></td>
-        <td><%= want.image %></td>
-        <td><%= want.address %></td>
-        <td><%= want.latitude %></td>
-        <td><%= want.longitude %></td>
-        <td><%= want.likes.count %></td>
-        <td><%= link_to 'Show', want %></td>
-        <td><%= link_to 'Edit', edit_want_path(want) %></td>
-        <td><%= link_to 'Destroy', want, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td>
-          <%= form_for Like::LikeWant.new, url: likes_path, method: :post do |f| %>
-            <%= f.hidden_field :type, value: "Like::LikeWant" %>
-            <%= f.hidden_field :target_id, value: want.id %>
-            <%= f.submit "Like" %>
+    <div class="want_information">
+      <div class="avatar"><image src="assets/avatar.png"/></div>
+      <div class="right_info">
+        <a class="more" href="#"></a>
+        <p>
+          <%= want.description %>
+        </p>
+        <div class="advertise">
+          <% want.advertises.each do |advertise| %>
+            <div class="advertise_comment">
+              <%= advertise.comment %>
+              <br/>
+              <div class="avatar with_full">
+                <image src="assets/icon_product.png"/>
+                Some information here!!!!!!!!
+              </div>
+              <br/>
+              <font size="2px" color="#3b5998"><a class="like">Like</a> - <a class="reply">Reply</a></font>
+              <%= form_for Comment.new do |ad_comment_field| %>
+                <%= ad_comment_field.hidden_field :advertise_id, value: advertise.id %>
+                <%= ad_comment_field.text_field :comment, class: "ad_comment" %>
+                <%= ad_comment_field.submit :Ok %>
+              <% end %>
+              <div class="comment">
+                <% advertise.comments.reverse.each do |comment| %>
+                  <div><%= comment.comment %></div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
-        </td>
-      </tr>
+          <%= form_for Advertise.new do |f| %>
+            <%= f.text_field :comment %>
+            <%= f.hidden_field :want_id, value: want.id %>
+            <!-- TODO FIX user_id, product_id -->
+            <%= f.hidden_field :user_id, value: 1 %>
+            <%= f.hidden_field :product_id, value: 1 %>
+            <%= f.submit :Ok %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <div data-role="footer">
+    <h1>Footer Text</h1>
+  </div>
+</div>
 
-<%= link_to 'New Want', new_want_path %>
+<script>
+  $(".reply").click(function(e){
+    $(".advertise_comment .new_comment").hide();
+    $(this).parent().siblings(".new_comment").show();
+  });
+</script>

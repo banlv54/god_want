@@ -1,5 +1,79 @@
-<h1>New want</h1>
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>Want honepage</h1>
+  </div>
 
-<%= render 'form' %>
+   <div data-role="main" class="ui-content">
+    <h1>New want</h1>
 
-<%= link_to 'Back', wants_path %>
+    <%= render 'form' %>
+
+    <%= link_to 'Back', wants_path %>
+
+  </div>
+
+  <div data-role="footer">
+    <h1>Footer Text</h1>
+  </div>
+</div> 
+
+
+<script>
+
+  $(function(e){
+    console.log("Ready to bring the awesome.");
+    var sugList = $("#suggestions");
+
+    $("#want_tags").on("input", function(e) {
+        var text = $(this).val();
+        if (text.lastIndexOf(", ") == -1){
+          start_key = text;
+        } else {
+          start_key = text.substring(text.lastIndexOf(", ") + 2, text.length);
+        }
+        console.log(start_key)
+        if(start_key.length < 1) {
+            sugList.html("");
+            sugList.listview("refresh");
+        } else {
+            function index_of(object) {
+              return object.name.indexOf(start_key) != -1
+            }
+            $.get("<%= tags_path.to_s %>", function(res,code) {
+                var str = "";
+                arr = res.filter(index_of)
+                for(var i=0, len=arr.length; i<len; i++) {
+                    str += "<li class='want_tag'>"+arr[i].name+"</li>";
+                }
+                sugList.html(str);
+                sugList.listview("refresh");
+            },"json");
+        }
+    });
+
+    $("#pageone").click(function(e){
+      sugList.html("");
+      sugList.listview("refresh");
+    });
+  });
+  $( document ).on("click", "li.want_tag", function(e){
+    e.stopPropagation();
+    string = $("#want_tags").val();
+    if (string.lastIndexOf(", ") == -1){
+      val = $(this).html() + ", ";
+    } else {
+      val = string.substring(0, string.lastIndexOf(", ") + 2) + $(this).html() + ", "      
+    }
+    $("#want_tags").val(val);
+    // console.log(val)
+    // alert("ok");
+  });
+
+
+  navigator.geolocation.getCurrentPosition(GetLocation);
+  function GetLocation(location) {
+    $("#want_latitude").val(location.coords.latitude);
+    $("#want_longitude").val(location.coords.longitude);
+  }
+
+</script>
