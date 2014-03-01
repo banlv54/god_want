@@ -1,3 +1,5 @@
 class Like < ActiveRecord::Base
-	belongs_to :user
+  include Notices::Noticeable
+
+  belongs_to :user
 end
