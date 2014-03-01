@@ -7,4 +7,12 @@ class NoticeShop < ActiveRecord::Base
 
   accepts_nested_attributes_for :notice_shop_recipients
 
+  def source_target
+    case targetable.class.name
+    when Want.name
+      targetable
+    else
+    end
+  end
+
 end

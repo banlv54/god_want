@@ -1,5 +1,5 @@
 class Advertise < ActiveRecord::Base
-  include Shops::Noticeable
+  include Notices::Noticeable
   
   belongs_to :want
   belongs_to :user

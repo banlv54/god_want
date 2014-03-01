@@ -20,9 +20,6 @@ module Shops
 
     def notice_recipients_attrs
       case self.class.name
-      when Advertise.name
-        recipients = want.shops.map(&:id)
-        recipients.map { |id| {receiver_shop_id: id}}
       when Want.name
         recipients = shops.map(&:id)
         recipients.map { |id| {receiver_shop_id: id}}

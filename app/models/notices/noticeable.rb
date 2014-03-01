@@ -26,6 +26,9 @@ module Notices
       when Like.name, Like::LikeComment.name, Like::LikeWant.name, Like::LikeAdvertise.name
         recipients = [target.user_id] - [user_id]
         recipients.map { |id| {receiver_user_id: id}}
+      when Advertise.name
+        recipients = [want.user_id] - [user_id]
+        recipients.map { |id| {receiver_user_id: id}}
       else
         []
       end

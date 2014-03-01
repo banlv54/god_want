@@ -11,4 +11,21 @@ class Notice < ActiveRecord::Base
   def targetable_type=(sType)
     super(sType.to_s.classify.constantize.base_class.to_s)
   end
+
+  def source_target
+    case targetable.class.name
+    when Like::LikeComment.name
+      targetable.target.advertise.want
+    when Like::LikeAdvertise.name
+      targetable.target.want
+    when Like::LikeWant.name
+      targetable.target
+    when Comment.name
+      targetable.advertise.want
+    when Advertise.name
+      targetable.want
+    else
+      nil
+    end
+  end
 end
