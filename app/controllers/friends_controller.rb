@@ -61,6 +61,14 @@ class FriendsController < ApplicationController
     end
   end
 
+  def friend_request
+    @friend = current_user.friends.where(friend_id: params[:fid]).try(:first)
+    @friend.present? ? @friend.destroy : current_user.friends.create(friend_id: params[:fid])
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
