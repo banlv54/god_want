@@ -1,3 +1,97 @@
 // Place all the styles related to the Wants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.hiden{
+  display: none !important;
+}
+.want_information{
+  position: relative;
+  border-top: 1px solid #e9e9e9;
+  form{
+    /*margin-left: 10px;*/
+  }
+  
+  .more{
+    display: none;
+    background-image: url("icon_small.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: 0 -72px;
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    &:hover{
+      /*background-color: white;*/
+      background-color: white !important;
+    }
+
+  }
+  &:hover{
+    .more{
+      display: block;
+    }
+  }
+
+  .avatar, img{
+    float: left;
+    width: 45px;
+    height: 45px;
+    margin-top: 1px;
+  }
+  .ui-btn{
+    display: inline-block;
+    width: 4% !important;
+    padding: 7px !important;
+  }
+}
+.new_advertise{
+  border: none;
+  div {
+    border: none;
+    display: inline-block;
+    width: 90% !important;
+  }
+}
+.advertise_comment, form{
+  margin-top: 2px;
+  background-color: #EDF0F5;
+}
+.advertise{
+  padding-left: 50px;
+}
+.advertise_comment{
+  margin-top: 2px;
+  padding: 5px;
+  form{
+    display: none;
+    .ui-input-text{
+      display: inline-block;
+      width: 90%;
+    }
+    .ui-btn{
+      display: inline-block;
+      width: 4% !important;
+      padding: 7px !important;
+    }
+    margin-left: 10px;
+  }
+}
+a{
+  cursor: pointer;
+  &:hover{
+    background-color: inherit;
+    text-decoration: underline;
+  }
+
+}
+.with_full{
+  width: 100% !important;
+}
+.comment{
+  padding-left: 20px;
+  div{
+    margin-top: 8px;
+    border-top: 1px solid #d0d4e4;
+  }
+}
