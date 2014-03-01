@@ -1,24 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div data-role="page" id="pageone" data-theme="b">
+  <div data-role="header">
+    <h1>Profile</h1>
+    <a href="#" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {role: :button,inline: true, theme: :b}%>
+  </div>
+  <div data-role="content">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        
+        <p>
+          <strong>Name:</strong>
+          <%= @user.name %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+        <p>
+          <strong>Email:</strong>
+          <%= @user.email %>
+        </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+        <p>
+          <strong>Password:</strong>
+          <%= @user.password %>
+        </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
+        <p>
+          <strong>Avatar:</strong>
+          <%= @user.avatar %>
+        </p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @user.avatar %>
-</p>
+        <%= link_to 'Edit', edit_user_path(@user) %> |
+        <%= link_to 'Back', users_path %>
+      </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+      <% if @user != current_user %>
+      <div class="ui-block-b">
+        <a href="#" data-role="button" data-inline="true" data-theme="b">Sent friend request</a> 
+      </div>
+      <% end %>
+    </div><!-- /grid-a -->
+    
+  </div>
+  <div data-role="footer">
+  </div>
+</div>

@@ -1,11 +1,18 @@
-<h1>Listing users</h1>
+<div data-role="page" id="pageone" data-theme="b">
+  <div data-role="header">
+    <h1>List User</h1>
+    <a href="#" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {role: :button,inline: true, theme: :b}%>
+  </div>
+
+  <div data-role="content">
+    <h1>Listing users</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Password</th>
       <th>Avatar</th>
       <th></th>
       <th></th>
@@ -18,7 +25,6 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
         <td><%= user.avatar %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -31,3 +37,10 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+  </div>
+
+  <div data-role="footer">
+    <h1>Insert Footer Text Here</h1>
+  </div>
+</div> 
+

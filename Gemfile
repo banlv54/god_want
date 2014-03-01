@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'jquery_mobile_rails'
-
+gem 'devise'
+gem 'pry'
+gem 'pry-rails'
+gem 'binding_of_caller'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
