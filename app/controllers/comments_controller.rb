@@ -24,17 +24,25 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
-
+    current_user = User.first # replace this with current_user logged in
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
+      if current_user.do_comment(comment_params[:advertise_id], comment_params[:comment])
+        format.html { redirect_to advertises_path, notice: "Comment #{comment_params[:comment]} for advertise #{comment_params[:advertise_id]} has been created by #{current_user.name}"}
       else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back, notice: "Something went wrong"}
       end
     end
+    #@comment = Comment.new(comment_params)
+
+    #respond_to do |format|
+    #  if @comment.save
+    #    format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+    #    format.json { render action: 'show', status: :created, location: @comment }
+    #  else
+    #   format.html { render action: 'new' }
+    #    format.json { render json: @comment.errors, status: :unprocessable_entity }
+    #  end
+    #end
   end
 
   # PATCH/PUT /comments/1
@@ -69,6 +77,8 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:advertise_id, :user_id, :comment)
+      if params[:comment_comment_advertise].present?
+        params.require(:comment_comment_advertise).permit(:advertise_id, :user_id, :comment)
+      end
     end
 end
