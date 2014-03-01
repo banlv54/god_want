@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_shop
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = @shop.categories
   end
 
   # GET /categories/1
@@ -24,7 +25,7 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
+    @category = @shop.categories.new(category_params)
 
     respond_to do |format|
       if @category.save
@@ -67,8 +68,12 @@ class CategoriesController < ApplicationController
       @category = Category.find(params[:id])
     end
 
+    def set_shop
+      @shop = current_user.shops.first || current_user.shop # TODO fix when have user
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:shop_id, :name)
+      params.require(:category).permit(:name)
     end
 end

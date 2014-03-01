@@ -22,7 +22,7 @@
 
 <p>
   <strong>Images:</strong>
-  <%= @product.images %>
+  <%= image_tag @product.images.thumb %>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
