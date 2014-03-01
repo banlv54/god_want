@@ -1,4 +1,5 @@
 GoldWant::Application.routes.draw do
+
   resources :notice_shop_recipients
 
   resources :notice_shops

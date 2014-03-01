@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+  views:
+    messages:
+      notices:
+        like_wants: Like your wants
+        like_advertises: Like your advertise
+        like_comments: Like your comment
+        comments: Comment your advertise
+        wants: Create a want
+        advertises: Advertise your want

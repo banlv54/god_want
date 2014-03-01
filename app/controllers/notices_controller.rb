@@ -4,7 +4,7 @@ class NoticesController < ApplicationController
   # GET /notices
   # GET /notices.json
   def index
-    @notices = Notice.all
+    @notice_recipients = User.first.received_notices.order("created_at DESC")
   end
 
   # GET /notices/1
