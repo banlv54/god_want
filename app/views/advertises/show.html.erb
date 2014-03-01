@@ -20,5 +20,16 @@
   <%= @advertise.user_id %>
 </p>
 
+<p>  
+  <strong>Like Count:</strong>
+  <%= @advertise.likes.count %>
+</p>
+
+<% @advertise.comments.each do |cm| %>
+	<p>
+	  <strong>Comment:</strong>
+	  <%= cm.comment %>
+	</p>
+<% end %>
 <%= link_to 'Edit', edit_advertise_path(@advertise) %> |
 <%= link_to 'Back', advertises_path %>

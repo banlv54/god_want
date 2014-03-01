@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>Listing wants</h1>
 
 <table>
@@ -10,6 +11,7 @@
       <th>Address</th>
       <th>Latitude</th>
       <th>Longitude</th>
+      <th>Like Count</th>
       <th></th>
       <th></th>
       <th></th>
@@ -26,9 +28,17 @@
         <td><%= want.address %></td>
         <td><%= want.latitude %></td>
         <td><%= want.longitude %></td>
+        <td><%= want.likes.count %></td>
         <td><%= link_to 'Show', want %></td>
         <td><%= link_to 'Edit', edit_want_path(want) %></td>
         <td><%= link_to 'Destroy', want, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= form_for Like::LikeWant.new, url: likes_path, method: :post do |f| %>
+            <%= f.hidden_field :type, value: "Like::LikeWant" %>
+            <%= f.hidden_field :target_id, value: want.id %>
+            <%= f.submit "Like" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

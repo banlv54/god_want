@@ -35,5 +35,10 @@
   <%= @want.longitude %>
 </p>
 
+<p>  
+  <strong>Like Count:</strong>
+  <%= @want.likes.count %>
+</p>
+
 <%= link_to 'Edit', edit_want_path(@want) %> |
 <%= link_to 'Back', wants_path %>

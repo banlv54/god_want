@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>Listing advertises</h1>
 
 <table>
@@ -7,6 +8,7 @@
       <th>Product</th>
       <th>Comment</th>
       <th>User</th>
+      <th>Like Count</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,10 +22,31 @@
         <td><%= advertise.product_id %></td>
         <td><%= advertise.comment %></td>
         <td><%= advertise.user_id %></td>
+        <td><%= advertise.likes.count %></td>
         <td><%= link_to 'Show', advertise %></td>
         <td><%= link_to 'Edit', edit_advertise_path(advertise) %></td>
         <td><%= link_to 'Destroy', advertise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= form_for Like::LikeAdvertise.new, url: likes_path, method: :post do |f| %>
+            <%= f.hidden_field :type, value: "Like::LikeAdvertise" %>
+            <%= f.hidden_field :target_id, value: advertise.id %>
+            <%= f.submit "Like" %>
+          <% end %>
+        </td>
+        <td>
+          <%= form_for Comment::CommentAdvertise.new, url: comments_path, method: :post do |f| %>
+            <%= f.text_field :comment %>
+            <%= f.hidden_field :advertise_id, value: advertise.id %>
+            <%= f.submit "Comment" %>
+          <% end %>
+        </td>
       </tr>
+      <% advertise.comments.each do |cm| %>
+          <tr>
+            <td><strong>Comment:</strong></td>
+            <td><%= cm.comment %></td>
+          </tr>
+        <% end %>
     <% end %>
   </tbody>
 </table>

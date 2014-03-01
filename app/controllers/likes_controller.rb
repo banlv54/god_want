@@ -24,17 +24,25 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
-    @like = Like.new(like_params)
-
+    current_user = User.first # replace this with current_user logged in
     respond_to do |format|
-      if @like.save
-        format.html { redirect_to @like, notice: 'Like was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @like }
+      if current_user.do_like(like_params[:target_id], like_params[:type])
+        format.html { redirect_to url_for_back, notice: "Target No #{like_params[:target_id]} has been liked by #{current_user.name}"}
       else
-        format.html { render action: 'new' }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+        format.html { redirect_to(url_for_back, notice: "Something went wrong") and return}
       end
     end
+    # @like = Like.new(like_params)
+
+    # respond_to do |format|
+    #   if @like.save
+    #     format.html { redirect_to @like, notice: 'Like was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @like }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @like.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /likes/1
@@ -69,6 +77,24 @@ class LikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def like_params
-      params.require(:like).permit(:target_id, :type, :user_id)
+      if params[:like_like_comment].present?
+        params.require(:like_like_comment).permit(:target_id, :type, :user_id)
+      elsif params[:like_like_want].present?
+        params.require(:like_like_want).permit(:target_id, :type, :user_id)
+      elsif params[:like_like_advertise].present?
+        params.require(:like_like_advertise).permit(:target_id, :type, :user_id)
+      end
+          
+    end
+
+    def url_for_back
+      case like_params[:type]
+      when Like::LikeComment.name
+        comments_path
+      when Like::LikeWant.name
+        wants_path
+      when Like::LikeAdvertise.name
+        advertises_path
+      end
     end
 end
