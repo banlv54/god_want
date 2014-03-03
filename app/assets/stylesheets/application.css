@@ -12,3 +12,7 @@
  *= require_tree .
  *= require jquery.mobile
  */
+div.ui-page.ui-page-theme-a.ui-page-active{
+  width: 40%;
+  margin-left: 400px;
+}

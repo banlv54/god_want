@@ -1,0 +1,12 @@
+<tr>
+  <%= f.fields_for :tags, tag, child_index: id do |att| %>
+    <td>
+      <%= att.text_field :name %>
+      <%= att.hidden_field :id %>
+    </td>
+    <td>
+      <%= att.hidden_field :_destroy %>
+      <%= link_to("Delete", "javascript:void(0)", class: "remove_fields") %>
+    </td>
+  <% end %>
+</tr>

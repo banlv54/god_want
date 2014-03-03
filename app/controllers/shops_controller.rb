@@ -16,6 +16,7 @@ class ShopsController < ApplicationController
   # GET /shops/new
   def new
     @shop = Shop.new
+    @shop.build_tags
     @shop.user_shops
   end
 
@@ -31,7 +32,7 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        format.html { redirect_to @shop, notice: 'Shop was successfully created.' }
+        format.html { redirect_to shop_path, notice: 'Shop was successfully created.' }
         format.json { render action: 'show', status: :created, location: @shop }
       else
         format.html { render action: 'new' }
@@ -45,7 +46,7 @@ class ShopsController < ApplicationController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to @shop, notice: 'Shop was successfully updated.' }
+        format.html { redirect_to shop_path, notice: 'Shop was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -81,6 +82,7 @@ class ShopsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def shop_params
       params.require(:shop).permit(:owner_id, :name, :address1, :address2,
-        :city, :country, :zipcode, :tel, :banner, :tags, :remote_banner_url)
+        :city, :country, :zipcode, :tel, :banner, :tags, :remote_banner_url,
+        tags_attributes: [:id, :name, :_destroy])
     end
 end
