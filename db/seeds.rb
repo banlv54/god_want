@@ -5,6 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-%W(admin, manager, staff).each do |role|
+%W(admin staff collaborator).each do |role|
   Role.create(name: role)
 end

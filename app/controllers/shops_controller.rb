@@ -1,11 +1,12 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
   before_action :has_shop?, only: :new
+  before_action :correct_shop?, only: [:edit, :update]
 
   # GET /shops
   # GET /shops.json
   def index
-    @shops = Shop.all
+    @shops = Shop.all_shops(current_user.id)
   end
 
   # GET /shops/1
@@ -68,15 +69,15 @@ class ShopsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
-      unless @shop = current_user.shops.first || current_user.shop# TODO fix when have current_user
-        redirect_to new_shop_path
-      end
+      @shop = Shop.find(params[:id])
     end
 
     def has_shop?
-      if current_user.shops.first || current_user.shop
-        redirect_to shop_path
-      end
+      redirect_to shops_path if current_user.shop
+    end
+
+    def correct_shop?
+      redirect_to shops_path unless current_user.shops.include?(@shop)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

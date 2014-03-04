@@ -13,6 +13,7 @@
       <th>Tel</th>
       <th>Banner</th>
       <th>Tags</th>
+      <th>Role</th>
       <th></th>
       <th></th>
       <th></th>
@@ -30,8 +31,9 @@
         <td><%= shop.country %></td>
         <td><%= shop.zipcode %></td>
         <td><%= shop.tel %></td>
-        <td><%= shop.banner %></td>
-        <td><%= shop.tags %></td>
+        <td><%= image_tag shop.banner.large %></td>
+        <td><%= shop.tags.map(&:name).join(", ") %></td>
+        <td><%= Role.find(UserShop.get_role_id(current_user.id, shop.id)).try(:name) %></td>
         <td><%= link_to 'Show', shop %></td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -41,5 +43,8 @@
 </table>
 
 <br>
-
-<%= link_to 'New Shop', new_shop_path %>
+<% if cr_sh = current_user.shop %>
+  <%= link_to "Owner Shop", shop_path(cr_sh), :"data-role" => "button", style: "width:100px;" %>
+<% else %>
+  <%= link_to 'New Shop', new_shop_path, :"data-role" => "button", style: "width:100px;" %>
+<% end %>
