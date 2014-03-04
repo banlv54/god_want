@@ -5,11 +5,19 @@
 <%# end %>
 
 <div data-role="page" id="pageone">
-  <div data-role="header">
-    <h1>Want honepage</h1>
-  </div>
+
+  <%= render "layouts/header", title: "Want home pag" %>
 
   <div data-role="main" class="ui-content">
+    <%= form_for Want.new do |f| %>
+      <%= f.text_field :description ,{ class: "tag_input" } %>
+      <%= f.hidden_field :longitude %>
+      <%= f.hidden_field :latitude %>
+      <%= f.hidden_field :tags %>
+      <%= f.submit :Ok %>
+      <ul id="suggestions" data-role="listview" data-inset="true"></ul>
+    <% end %>
+
     <% @wants.each do |want| %>
     <div class="want_information">
       <div class="avatar"><image src="assets/avatar.png"/></div>
@@ -55,14 +63,8 @@
     <% end %>
   </div>
 
-  <div data-role="footer">
-    <h1>Footer Text</h1>
-  </div>
+  <%= render "layouts/footer" %>
 </div>
 
-<script>
-  $(".reply").click(function(e){
-    $(".advertise_comment .new_comment").hide();
-    $(this).parent().siblings(".new_comment").show();
-  });
+<script src="assets/wants.js">
 </script>
