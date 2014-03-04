@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Owner:</strong>
-  <%= @shop.try(:owner_id) %>
+  <%= @shop.user.name %>
 </p>
 
 <p>
@@ -46,7 +46,7 @@
 
 <p>
   <strong>Tags:</strong>
-  <%= @shop.try(:tags) %>
+  <%= @shop.tags.map(&:name).join(", ") %>
 </p>
 
 <%= link_to 'Edit', edit_shop_path %> |

@@ -6,6 +6,10 @@ class Shop < ActiveRecord::Base
   mount_uploader :banner, ImageUploader
   belongs_to :user, foreign_key: :owner_id
 
+  has_many :tags
+
+  accepts_nested_attributes_for :tags, allow_destroy: true
+
   after_save :create_user_shop
 
   private

@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require jquery.mobile
 //= require_tree .
+//= require shops
