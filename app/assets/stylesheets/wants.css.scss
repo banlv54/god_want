@@ -95,3 +95,17 @@ a{
     border-top: 1px solid #d0d4e4;
   }
 }
+.new_want{
+  .ui-input-text{
+    display: inline-block;
+    width: 93%;
+  }
+  .ui-btn{
+    display: inline-block;
+    width: 4% !important;
+    padding: 7px !important;
+  }
+}
+.want_tag{
+  cursor: pointer;
+}
