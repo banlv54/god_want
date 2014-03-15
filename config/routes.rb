@@ -25,7 +25,7 @@ GoldWant::Application.routes.draw do
 
   resources :user_shops
 
-  resource :shops
+  resources :shops
 
   resources :users do
     resources :wants
